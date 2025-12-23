@@ -61,3 +61,22 @@ fetch(TDM_URL)
         </div>`;
     });
   });
+/* TEAM SEARCH LOGIC */
+
+const searchInput = document.getElementById("teamSearch");
+
+searchInput.addEventListener("input", () => {
+  const value = searchInput.value.toLowerCase();
+
+  /* CLASSIC ROWS */
+  document.querySelectorAll("#classic .row").forEach(row => {
+    const team = row.children[0].textContent.toLowerCase();
+    row.style.display = team.includes(value) ? "" : "none";
+  });
+
+  /* TDM CARDS */
+  document.querySelectorAll(".tdm-card").forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(value) ? "" : "none";
+  });
+});
