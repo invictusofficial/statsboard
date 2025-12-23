@@ -65,6 +65,32 @@ h2 {
 
 .points { color:var(--red); font-weight:700 }
 
+/* TEAM SEARCH */
+
+.team-search {
+  margin-bottom: 18px;
+  max-width: 320px;
+}
+
+.team-search input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #0b0c10;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.team-search input::placeholder {
+  color: var(--muted);
+}
+
+.team-search input:focus {
+  border-color: var(--red);
+}
+
 /* TDM */
 
 .tdm-card {
