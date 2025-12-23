@@ -1,16 +1,32 @@
-const LEADERBOARD_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMR7-5h4ZeA2po3Ja9WdGckD_RhDmjexLV6E_NsVrLjIOS_cfbXNu8g-VRQBjb8aCCwO2DCyu8L04u/pub?output=csv";
-const CLASSIC_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTzzKGWLHnE6u4sIqLfCuBnHrunTh9wEBOBZzbz0nLPcUx2h5YA1MxnxIzGrkRr8Zv3R5DOtzCWcbr/pub?output=csv";
-const TDM_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPHMDSidJ4LbakOrx0F6Vlluf4b9j2NT2ucoolp7tSUybFI8GFbvEoyV9vTh_JiEbupmhz_HwN4Age/pub?output=csv";
+const LEADERBOARD_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMR7-5h4ZeA2po3Ja9WdGckD_RhDmjexLV6E_NsVrLjIOS_cfbXNu8g-VRQBjb8aCCwO2DCyu8L04u/pub?output=csv";
 
-/* Leaderboard */
+const CLASSIC_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTzzKGWLHnE6u4sIqLfCuBnHrunTh9wEBOBZzbz0nLPcUx2h5YA1MxnxIzGrkRr8Zv3R5DOtzCWcbr/pub?output=csv";
+
+const TDM_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPHMDSidJ4LbakOrx0F6Vlluf4b9j2NT2ucoolp7tSUybFI8GFbvEoyV9vTh_JiEbupmhz_HwN4Age/pub?output=csv";
+
+/* ---------- CSV SAFE SPLIT ---------- */
+function parseCSVRow(row) {
+  return row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, "").trim());
+}
+
+/* ---------- LEADERBOARD ---------- */
 fetch(LEADERBOARD_URL)
   .then(r => r.text())
-  .then(csv => {
-    const rows = csv.split("\n").slice(1);
+  .then(text => {
+    const rows = text.trim().split("\n").slice(1);
     const el = document.getElementById("leaderboard");
+    el.innerHTML = "";
 
     rows.forEach(r => {
-      const [rank, team, matches, points] = r.split(",");
+      if (!r.trim()) return;
+      const cols = parseCSVRow(r);
+      if (cols.length < 4) return;
+
+      const [rank, team, matches, points] = cols;
+
       el.innerHTML += `
         <div class="row">
           <span>${rank}</span>
@@ -21,15 +37,21 @@ fetch(LEADERBOARD_URL)
     });
   });
 
-/* Classic */
+/* ---------- CLASSIC ---------- */
 fetch(CLASSIC_URL)
   .then(r => r.text())
-  .then(csv => {
-    const rows = csv.split("\n").slice(1);
+  .then(text => {
+    const rows = text.trim().split("\n").slice(1);
     const el = document.getElementById("classic");
+    el.innerHTML = "";
 
     rows.forEach(r => {
-      const [team, players, captain, , status] = r.split(",");
+      if (!r.trim()) return;
+      const cols = parseCSVRow(r);
+      if (cols.length < 5) return;
+
+      const [team, players, captain, contact, status] = cols;
+
       el.innerHTML += `
         <div class="row">
           <span>${team}</span>
@@ -40,15 +62,21 @@ fetch(CLASSIC_URL)
     });
   });
 
-/* TDM */
+/* ---------- TDM ---------- */
 fetch(TDM_URL)
   .then(r => r.text())
-  .then(csv => {
-    const rows = csv.split("\n").slice(1);
+  .then(text => {
+    const rows = text.trim().split("\n").slice(1);
     const el = document.getElementById("tdm");
+    el.innerHTML = "";
 
     rows.forEach(r => {
-      const [ta, pa, ca, , tb, pb, cb] = r.split(",");
+      if (!r.trim()) return;
+      const cols = parseCSVRow(r);
+      if (cols.length < 7) return;
+
+      const [ta, pa, ca, , tb, pb, cb] = cols;
+
       el.innerHTML += `
         <div class="tdm-card">
           <div>
@@ -61,22 +89,19 @@ fetch(TDM_URL)
         </div>`;
     });
   });
-/* TEAM SEARCH LOGIC */
 
+/* ---------- SEARCH ---------- */
 const searchInput = document.getElementById("teamSearch");
 
 searchInput.addEventListener("input", () => {
   const value = searchInput.value.toLowerCase();
 
-  /* CLASSIC ROWS */
   document.querySelectorAll("#classic .row").forEach(row => {
     const team = row.children[0].textContent.toLowerCase();
     row.style.display = team.includes(value) ? "" : "none";
   });
 
-  /* TDM CARDS */
   document.querySelectorAll(".tdm-card").forEach(card => {
-    const text = card.textContent.toLowerCase();
-    card.style.display = text.includes(value) ? "" : "none";
+    card.style.display = card.textContent.toLowerCase().includes(value) ? "" : "none";
   });
 });
