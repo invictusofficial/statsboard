@@ -1,4 +1,4 @@
-const LEADERBOARD_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMR7-5h4ZeA2po3Ja9WdGckD_RhDmjexLV6E_NsVrLjIOS_cfbXNu8g-VRQBjb8aCCwO2DCyu8L04u/pub?output=csvV";
+const LEADERBOARD_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMR7-5h4ZeA2po3Ja9WdGckD_RhDmjexLV6E_NsVrLjIOS_cfbXNu8g-VRQBjb8aCCwO2DCyu8L04u/pub?output=csv";
 const CLASSIC_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTzzKGWLHnE6u4sIqLfCuBnHrunTh9wEBOBZzbz0nLPcUx2h5YA1MxnxIzGrkRr8Zv3R5DOtzCWcbr/pub?output=csv";
 const TDM_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPHMDSidJ4LbakOrx0F6Vlluf4b9j2NT2ucoolp7tSUybFI8GFbvEoyV9vTh_JiEbupmhz_HwN4Age/pub?output=csv";
 
