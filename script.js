@@ -1,11 +1,11 @@
 const LEADERBOARD_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMR7-5h4ZeA2po3Ja9WdGckD_RhDmjexLV6E_NsVrLjIOS_cfbXNu8g-VRQBjb8aCCwO2DCyu8L04u/pub?output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkpf2fIDe_gmp3TqgoO_oCvEm4djsHJLbLnGI7fwtQyyk4lFX3t9UrcMz_PyYLpKG9Bbx41sHOTfUd/pub?output=csv";
 
 const CLASSIC_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTzzKGWLHnE6u4sIqLfCuBnHrunTh9wEBOBZzbz0nLPcUx2h5YA1MxnxIzGrkRr8Zv3R5DOtzCWcbr/pub?output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQoGRILODd7r09GCEYVnh_f9UOp9jRLYigru0YUIG6IIhpboy4XXi8YJtBJ0Sj9sFygAh0uVVkj2tH/pub?output=csv";
 
 const TDM_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPHMDSidJ4LbakOrx0F6Vlluf4b9j2NT2ucoolp7tSUybFI8GFbvEoyV9vTh_JiEbupmhz_HwN4Age/pub?output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRK0w9NyLh2wB9X3V3XL3HJ-vZZpiOLNMWZT5pLzuTfhI1oGxEt8PisXryL_9vqdeKExdeehvgmAdB5/pub?output=csv";
 
 /* ---------- CSV SAFE SPLIT ---------- */
 function parseCSVRow(row) {
